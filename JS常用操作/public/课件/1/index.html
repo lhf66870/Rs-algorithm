@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li {
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <ul id="list"></ul>
+    
+    <script src="data.js"></script>
+    <script>
+        let ulElement = document.querySelector('#list');
+
+        // let html = '';
+        // datas.forEach( data => {
+        //     html += `
+        //         <li>${data.name}</li>
+        //     `;
+        // } );
+        // // console.log(html);
+        // ulElement.innerHTML = html;
+
+        ulElement.innerHTML = datas.map( data => {
+            return `
+                <li>${data.name}</li>
+            `;
+        } ).join('');
+    </script>
+</body>
+</html>

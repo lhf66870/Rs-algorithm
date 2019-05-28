@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let arr1 = [1,4,2,3,3,4,5];
+
+        // Set
+        // let s1 = new Set();
+        // s1.add('a');
+        // s1.add('a');
+        // s1.add('a');
+        // console.log(s1);
+
+        // let s1 = new Set( arr1 );
+        // console.log(s1);
+        // let arr2 = [...s1];
+        // console.log(arr2);
+
+        // console.log( [...new Set(arr1)] );
+
+        let obj = {};   //key
+        arr1.forEach( item => {
+            obj[item] = 1;
+        } );
+        console.log( Object.keys(obj).map(o=>Number(o)) );
+
+        // [1,[1,2],3,[1,2],3]
+    </script>
+</body>
+</html>

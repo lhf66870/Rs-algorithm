@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        // let arr1 = ['a', 'b', 'c'];
+
+        // for (let v of arr1) {
+        //     console.log(v);
+        // }
+        
+        let obj = {x: 1, y: 2};
+
+        obj[Symbol.iterator] = function() {
+            let keys = Object.keys(obj);
+            let len = keys.length;
+            let n = 0;
+            return {
+                next() {
+                    if (n < len) {
+                        return {
+                            done: false,
+                            value: {
+                                k: keys[n],
+                                v: obj[keys[n++]]
+                            }
+                        }
+                    } else {
+                        return {
+                            done: true
+                        }
+                    }
+                    
+                }
+            }
+        }
+
+        for (let v of obj) {
+            console.log(v);
+        }
+    </script>
+</body>
+</html>

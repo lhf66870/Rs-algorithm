@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <table id="table1" width="100%" border="1px">
+        <thead>
+            <tr>
+                <th>章节</th>
+                <th>类型</th>
+                <th>知识点</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    
+    <script src="data.js"></script>
+    <script>
+        let table1 = document.querySelector('#table1');
+
+        let tbody = table1.tBodies[0];
+
+        // console.log(tbody);
+
+        datas.sort( (a, b) => b.chapter - a.chapter );
+
+        tbody.innerHTML = createHTML(datas);
+
+        function createHTML( items ) {
+            return items.map( item => {
+                return `
+                    <tr>
+                        <td>${item.chapter}</td>
+                        <td>${item.type}</td>
+                        <td>${item.title}</td>
+                    </tr>
+                `;
+            } ).join('');
+        }
+
+    </script>
+
+</body>
+</html>

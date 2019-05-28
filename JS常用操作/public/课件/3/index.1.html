@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li {
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <ul id="list"></ul>
+    
+    <script src="data.js"></script>
+    <script>
+        let ulElement = document.querySelector('#list');
+
+
+        ulElement.innerHTML = createHTML(datas);
+
+        function createHTML( items, level = 0 ) {
+            return items.map( item => {
+
+                let s = '&nbsp;'.repeat(4 * level);
+
+                let str = `
+                    <li>${s} ${level} - ${item.name}</li>
+                `;
+                
+                if ( Array.isArray(item.children) ) {
+                    str += createHTML( item.children, level + 1 );
+                }
+
+                return str;
+                
+            } ).join('');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li {
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <ul id="list"></ul>
+    
+    <script src="data.js"></script>
+    <script>
+        let ulElement = document.querySelector('#list');
+
+        ulElement.innerHTML = createHTML(datas);
+
+        console.log( flat(datas) );
+
+        let newItems = flat(datas);
+
+        console.log( newItems );
+
+        // console.log( newItems.filter( item => item.checked ) );
+
+        function flat( items ) {
+            let newArr = [];
+
+            items.forEach( item => {
+                newArr.push(item);
+
+                if ( Array.isArray( item.children ) ) {
+                    newArr = newArr.concat(flat( item.children ));
+                }
+
+            } );
+
+            return newArr;
+        }
+        // flat 替代方案 通过reduce  concat 实现
+        function flat( items ) {
+            return items.reduce( (prev, current) => {
+                return prev.concat( 
+                    current,
+                    Array.isArray(current.children) ? flat(current.children) : []
+                 );
+            }, [] );
+        }
+
+        function createHTML( items, level = 0 ) {
+            return items.map( item => {
+                let str = `
+                    <li style="padding-left: ${level * 30}px">
+                        <input type="checkbox" ${item.checked ? 'checked' : ''} />
+                        <span>${item.name}</span>
+                    </li>
+                `;
+                
+                if ( Array.isArray(item.children) ) {
+                    str += createHTML( item.children, level + 1 );
+                }
+
+                return str;
+                
+            } ).join('');
+        }
+    </script>
+</body>
+</html>

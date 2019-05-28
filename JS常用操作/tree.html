@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li {
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="list"></ul>
+    <script src="data.js"></script>
+    <script>
+        //实现树形菜单
+        let ulElement = document.querySelector('#list');
+        ulElement.innerHTML = createHTML(datas);
+        function createHTML( items, level = 0 ) {
+            return items.map( item => {
+                let str = `
+                    <li style="padding-left: ${level * 30}px">${level} - ${item.name}</li>
+                `;
+                if ( Array.isArray(item.children) ) {
+                    str += createHTML( item.children, level + 1 );
+                }
+                return str;
+                
+            } ).join('');
+        }
+        //不推荐使用空格符，样式问题，浏览器实现不统一
+    </script>
+</body>
+</html>

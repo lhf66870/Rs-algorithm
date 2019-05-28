@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <table id="table1" width="100%" border="1px">
+        <thead>
+            <tr>
+                <th>章节</th>
+                <th>类型</th>
+                <th>知识点</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        let datas = [
+            {
+                chapter: 22,
+                type: '客户端信息存储',
+                title: 'cookie'
+            },
+            {
+                chapter: 23,
+                type: '前后端交互',
+                title: 'XMLHttpRequest 对象'
+            },
+            {
+                chapter: 22,
+                type: '客户端信息存储',
+                title: 'Application Cache'
+            },
+            {
+                chapter: 23,
+                type: '前后端交互',
+                title: 'FormData对象'
+            },
+            {
+                chapter: 24,
+                type: '搞定移动端',
+                title: 'TouchEvent 对象详解'
+            },
+            {
+                chapter: 22,
+                type: '客户端信息存储',
+                title: 'storage - 本地存储'
+            },
+            {
+                chapter: 27,
+                type: '探秘《淘宝造物节》类VR场景核心原理',
+                title: '3D 爆炸效果实现'
+            },
+            {
+                chapter: 24,
+                type: '搞定移动端',
+                title: '移动端touch事件'
+            },
+            {
+                chapter: 24,
+                type: '搞定移动端',
+                title: '移动端的陀螺仪操作'
+            },
+            {
+                chapter: 30,
+                type: 'React.js 全家桶',
+                title: 'react-router-dom'
+            },
+            {
+                chapter: 31,
+                type: 'Vue.js 全家桶',
+                title: 'vue-router'
+            },
+            {
+                chapter: 30,
+                type: 'React.js 全家桶',
+                title: 'React Redux'
+            },
+            {
+                chapter: 31,
+                type: 'Vue.js 全家桶',
+                title: 'vuex'
+            }
+        ];
+        let table1 = document.querySelector('#table1');
+
+        let tbody = table1.tBodies[0];
+
+        // console.log(tbody);
+
+        datas.sort( (a, b) => b.chapter - a.chapter );
+
+        tbody.innerHTML = createHTML(datas);
+
+        function createHTML( items ) {
+            return items.map( item => {
+                return `
+                    <tr>
+                        <td>${item.chapter}</td>
+                        <td>${item.type}</td>
+                        <td>${item.title}</td>
+                    </tr>
+                `;
+            } ).join('');
+        }
+
+    </script>
+
+</body>
+</html>
